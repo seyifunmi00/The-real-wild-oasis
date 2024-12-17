@@ -1,12 +1,18 @@
 import styled from "styled-components";
-
+import {NavLink} from "react-router-dom";
+import {
+ HiOutlineCalendarDays, HiOutlineCog6Tooth,
+ HiOutlineHome,
+ HiOutlineHomeModern,
+ HiOutlineUsers
+} from "react-icons/hi2";
 const NavList = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
 `;
 
-const Link = styled.a`
+const StyledNavLink = styled(NavLink)`
   &:link,
   &:visited {
     display: flex;
@@ -33,7 +39,6 @@ const Link = styled.a`
   & svg {
     width: 2.4rem;
     height: 2.4rem;
-    color: var(--color-grey-400);
     transition: all 0.3s;
   }
 
@@ -41,6 +46,31 @@ const Link = styled.a`
   &:active svg,
   &.active:link svg,
   &.active:visited svg {
-    color: var(--color-brand-600);
   }
 `;
+
+
+export default  function MainNav () {
+ return <nav>
+  <NavList className='py-10'>
+   <li className="active:bg-gray-300 hover:bg-gray-100">
+
+    <StyledNavLink to="/"><HiOutlineHome className="text-gray-500 w-12 h-12 hover:text-gray-700"/> <span>Home</span></StyledNavLink>
+
+   </li>
+   <li className="active:bg-gray-300 hover:bg-gray-100">
+    <StyledNavLink to="/bookings" className={({isActive}) => isActive ? "bg-gray-300" : ""}> <HiOutlineCalendarDays className="text-gray-500 hover:text-gray-700" /> <span>Bookings</span></StyledNavLink>
+   </li>
+   <li className="active:bg-gray-300 hover:bg-gray-100">
+    <StyledNavLink to="/cabins"> <HiOutlineHomeModern className="text-gray-500 hover:text-gray-700"/> <span>Cabins</span></StyledNavLink>
+   </li>
+   <li className="active:bg-gray-300 hover:bg-gray-100">
+    <StyledNavLink to="/users"> <HiOutlineUsers className="text-gray-500 hover:text-gray-700"/> <span>Users</span></StyledNavLink>
+   </li>
+   <li className="active:bg-gray-300 hover:bg-gray-100">
+    <StyledNavLink to="/settings"> <HiOutlineCog6Tooth className="text-gray-500 hover:text-gray-700" /> <span>Settings</span></StyledNavLink>
+   </li>
+  </NavList>
+
+ </nav>
+}
